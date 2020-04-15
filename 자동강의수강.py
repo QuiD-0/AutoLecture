@@ -27,7 +27,7 @@ for j in range (1,lec+1):#강의개수만큼 반복
                 checkPercent=checkPercent.text.split('%')#수강시간이 1%~99% 사이일 경우 시간 측정 
                 play=int(playtime[0])-int(checkPercent[0])*int(playtime[0])/100  
                 time.sleep(play*60+10)#sleep 1은 1초.플레이시간*60초 + 여분의 10초
-                print(play+"분 실행후 종료 됩니다.")
+                print(str(play)+"분 실행후 종료 됩니다.")
     time.sleep(2)
 driver.close()
 print("학습 종료")
