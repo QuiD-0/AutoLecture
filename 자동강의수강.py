@@ -5,12 +5,13 @@ path ="C:/chromedriver.exe" #C최상위에 파일 위치
 driver = webdriver.Chrome(path)
 driver.get('https://ecampus.ut.ac.kr/main/MainView.dunet')#학교 홈페이지로이동
 login=driver.find_element_by_name("id")
-login.send_keys("MY-ID")
+login.send_keys("My-ID")
 login=driver.find_element_by_name("pass")
-login.send_keys("MY-PW")
+login.send_keys("My-PW")
 driver.find_element_by_class_name("btn_login").click()#로그인
 time.sleep(7)#로그인 로딩시간 대기
-for j in range (5,8):#총 7개의 강의
+lec=len(driver.find_elements_by_xpath('/html/body/div[7]/div[3]/div/div[3]/div[2]/ul/li')) #총 강의 개수 확인
+for j in range (1,lec+1):#강의개수만큼 반복 
     driver.get('https://ecampus.ut.ac.kr/lms/myLecture/doListView.dunet?mnid='+'201008840728')
     driver.find_element_by_xpath("/html/body/div[7]/div[3]/div/div[3]/div[2]/ul/li["+str(j)+"]/div[1]/a").click();#j번째 과목 클릭
     count=len(driver.find_elements_by_xpath('//*[@id="lenAct"]/div'))#해당 과목의 강의 개수 체크 
@@ -25,5 +26,8 @@ for j in range (5,8):#총 7개의 강의
                 driver.find_elements_by_xpath('//*[@id="lenAct"]/div['+str(i)+']/div[3]/a')[0].click();
                 checkPercent=checkPercent.text.split('%')#수강시간이 1%~99% 사이일 경우 시간 측정 
                 play=int(playtime[0])-int(checkPercent[0])*int(playtime[0])/100  
-                time.sleep(play*60+10)#sleep 1은 1초.플레이시간*60초 + 여분의 10초 
+                time.sleep(play*60+10)#sleep 1은 1초.플레이시간*60초 + 여분의 10초
+                print(play+"분 실행후 종료 됩니다.")
     time.sleep(2)
+driver.close()
+print("학습 종료")
