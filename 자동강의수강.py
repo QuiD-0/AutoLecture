@@ -15,9 +15,9 @@ def playlec(times):
                 playtime=playtime[2].split('분')
                 driver.find_elements_by_xpath('//*[@id="lenAct"]/div['+str(i)+']/div[3]/a')[0].click();
                 checkPercent=checkPercent.text.split('%')#수강시간이 1%~99% 사이일 경우 시간 측정 
-                play=int(playtime[0])-int(checkPercent[0])*int(playtime[0])/100  
-                time.sleep(play*60+10)#sleep 1은 1초.플레이시간*60초 + 여분의 10초
+                play=int(playtime[0])-int(checkPercent[0])*int(playtime[0])/100
                 print(str(play)+"분 실행후 종료 됩니다.")
+                time.sleep(play*60+10)#sleep 1은 1초.플레이시간*60초 + 여분의 10초
     time.sleep(2)
 
 path ="./chromedriver.exe" #파이썬/exe 파일 위치에 같이 있어야 한다.
