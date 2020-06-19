@@ -20,9 +20,9 @@ def playlec(times):
     driver.find_element_by_xpath("/html/body/div[7]/div[3]/div/div[3]/div[2]/ul/li["+str(times)+"]/div[1]/a").click();#j번째 과목 클릭
     count=len(driver.find_elements_by_xpath('//*[@id="lenAct"]/div'))#해당 과목의 강의 개수 체크 
     i = input("1~"+str(count)+"중 입력, 0:종료 10:전부")
-    if(i!="0" and i!=10):
+    if(i!="0" and i!="10"):
         playvid(i)
-    if(i==10):
+    if(i=="10"):
         for i in range (1,count+1):
             playvid(i)
     time.sleep(2)
